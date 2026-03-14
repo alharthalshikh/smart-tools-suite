@@ -1,0 +1,69 @@
+name: smart_tools_app
+description: "أدوات ذكية - مجموعة أدوات تعمل محلياً على الجوال"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  
+  # PDF tools
+  pdf: ^3.11.1
+  printing: ^5.13.4
+  file_picker: ^8.1.7
+  
+  # QR & Barcode
+  qr_flutter: ^4.1.0
+  barcode_widget: ^2.0.4
+  
+  # Image tools
+  image: ^4.3.0
+  image_picker: ^1.1.2
+  palette_generator: ^0.3.3+4
+  flutter_image_compress: ^2.3.0
+  
+  # Audio tools
+  record: ^6.2.0
+  audioplayers: ^6.3.0
+  ffmpeg_kit_flutter_new_audio: ^2.0.0
+  
+  # General
+  url_launcher: ^6.3.0
+  path_provider: ^2.1.5
+  google_fonts: ^6.2.1
+  provider: ^6.1.2
+  permission_handler: ^11.3.1
+  flutter_colorpicker: ^1.1.0
+  device_info_plus: ^10.1.0
+  connectivity_plus: ^6.0.3
+  local_auth: ^2.2.0
+  google_mlkit_selfie_segmentation: ^0.7.1
+  google_mlkit_document_scanner: ^0.1.0
+  shared_preferences: ^2.2.3
+  gal: ^2.3.2
+  sqflite: ^2.3.3+3
+  path: ^1.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/launcher_icon.png"
+  remove_alpha_ios: true
+  min_sdk_android: 21
+  adaptive_icon_background: "#0B1F3A"
+  adaptive_icon_foreground: "assets/images/launcher_foreground.png"
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
