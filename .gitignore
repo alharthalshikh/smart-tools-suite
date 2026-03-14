@@ -1,3 +1,6 @@
+# Excluded Projects
+smart_tools_app/
+
 # Node.js
 node_modules/
 dist/
