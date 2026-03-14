@@ -6,69 +6,6 @@ export function SpeedTestPage() {
     const [uploadSpeed, setUploadSpeed] = useState(0);
     const animationFrameRef = useRef<number | null>(null);
 
-    const animateNumber = (target: number, setter: (v: number) => void, duration: number) => {
-        const startTime = performance.now();
-        const initialValue = 0;
-
-        const step = (now: number) => {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-
-            // Random jitter to simulate real-time data flow
-            const jitter = progress < 0.9 ? (Math.random() - 0.5) * (target * 0.1) : 0;
-
-            // Base value with easing
-            const easeProgress = 1 - Math.pow(1 - progress, 3);
-            const baseValue = initialValue + (target - initialValue) * easeProgress;
-
-            setter(Number(Math.max(0, baseValue + jitter).toFixed(1)));
-
-            if (progress < 1) {
-                animationFrameRef.current = requestAnimationFrame(step);
-            }
-        };
-
-        animationFrameRef.current = requestAnimationFrame(step);
-    };
-
-    const runDownloadTest = async () => {
-        const startTime = Date.now();
-        const testUrl = `https://cdn.jsdelivr.net/npm/pdfjs-dist@4.4.168/build/pdf.worker.mjs?cb=${startTime}`;
-
-        try {
-            const response = await fetch(testUrl);
-            const blob = await response.blob();
-            const endTime = Date.now();
-            const durationInSeconds = (endTime - startTime) / 1000;
-            const mbps = (blob.size * 8 / durationInSeconds) / (1024 * 1024);
-            return mbps;
-        } catch (e) {
-            return 0;
-        }
-    };
-
-    const runUploadTest = async () => {
-        // Generating a dummy blob for upload test (approx 1MB)
-        const size = 1024 * 1024;
-        const data = new Uint8Array(size);
-        const blob = new Blob([data], { type: 'application/octet-stream' });
-
-        const startTime = Date.now();
-        try {
-            // Using a public POST endpoint that supports CORS
-            await fetch('https://httpbin.org/post', {
-                method: 'POST',
-                body: blob,
-            });
-            const endTime = Date.now();
-            const durationInSeconds = (endTime - startTime) / 1000;
-            const mbps = (blob.size * 8 / durationInSeconds) / (1024 * 1024);
-            return mbps;
-        } catch (e) {
-            // Fallback: simulate based on download speed if upload restricted
-            return 0;
-        }
-    };
 
     const startTest = async () => {
         setStatus('testing-download');
